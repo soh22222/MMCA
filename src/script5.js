@@ -4,7 +4,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 import * as dat from 'lil-gui'
 import { seededRandom } from 'three/src/math/MathUtils'
-import gsap from 'gsap'
+//import gsap from 'gsap'
 //import { BufferGeometry } from '../core/BufferGeometry.js';
 
 THREE.ColorManagement.enabled = false
