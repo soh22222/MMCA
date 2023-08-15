@@ -126,10 +126,6 @@ const plane2 = new THREE.Mesh(geometry, image2Material);
 const plane3 = new THREE.Mesh(geometry, image2Material);
 
 
-
-const loader = new THREE.ImageLoader();
-
-
 //plane 전체단위 랜덤 생성
 for (var i = 0; i < 50; i++) {
     const plane = new THREE.Mesh(geometry, image1Material);
@@ -178,13 +174,15 @@ let model = null
 
 gltfLoader.load("/models/world_middle/world_middle_images.gltf", (gltf) => {
     model = gltf.scene;
-    console.log(model)
 
     model.position.y = -2
     scene.add(model)
-    tick()
-}
-);
+
+    if(model){
+        tick()
+    }
+    
+});
 
 
 /**
@@ -286,15 +284,22 @@ const tick = () => {
     camera.lookAt(plane.position);
     dust.rotation.y = elapsedTime * 0.1
 
-    if (model) {
-        raycaster.setFromCamera(mouse, camera)   
-        const modelIntersects = raycaster.intersectObject(model)
+    raycaster.setFromCamera(mouse, camera)   
+    const modelIntersects = raycaster.intersectObject(model)
+    
+    if (modelIntersects.length) {
+        currentIntersect = modelIntersects[0].object
         
-        if (modelIntersects.length) {
-            currentIntersect = modelIntersects[0].object
-            gsap.to(currentIntersect.scale, { duration: .7, x: 10, y: 10, z: 10 });
-            gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
-        }
+        window.onclick = () => {
+            if(currentIntersect != null){
+                openPopup(currentIntersect.name)
+            }
+        }    
+        gsap.to(currentIntersect.scale, { duration: .7, x: 2, y: 2, z: 2 });
+        gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
+    }
+    else{
+        currentIntersect = null
     }
 
 
@@ -305,4 +310,6 @@ const tick = () => {
 
 }
 
-
+const openPopup = (id) => {
+    console.log('clicked ' + id)
+}
