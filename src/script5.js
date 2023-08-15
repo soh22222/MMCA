@@ -272,7 +272,6 @@ const raycaster = new THREE.Raycaster()
 let currentIntersect = null
 
 const tick = () => {
-    let currentIntersect = null
     const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
