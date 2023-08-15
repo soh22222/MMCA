@@ -388,12 +388,13 @@ const tick = () =>
         const modelIntersects = raycaster.intersectObject(model)
         
         if(modelIntersects.length)
-        {
-            //model.scale.set(1.2, 1.2, 1.2)
+        {   
+            gsap.to(model.children[0].scale, {duration: .7, x: 10, y:10, z:10});
+            
         }
         else
         {
-            model.scale.set(1, 1, 1)
+            gsap.to(model.children[0].scale, {duration: .7, x: 1, y:1, z:1});
         }
     }
 
