@@ -4,7 +4,6 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 import * as dat from 'lil-gui'
 import { seededRandom } from 'three/src/math/MathUtils'
-//import gsap from 'gsap'
 //import { BufferGeometry } from '../core/BufferGeometry.js';
 
 THREE.ColorManagement.enabled = false
@@ -36,8 +35,6 @@ const textureLoader = new THREE.TextureLoader()
 // Debug
 const gui = new dat.GUI()
 
-
-
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -56,7 +53,7 @@ for(let i = 0; i < 6; i++) {
     })
 
     const img = new THREE.Mesh(geometry3, image1Material)
-     img.position.x= Math.random()*20
+    img.position.x= Math.random()*20
     img.position.y= Math.random()*20
     img.position.z= Math.random()*20
     img.rotation.y= Math.random()*10
