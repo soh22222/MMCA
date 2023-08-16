@@ -17,3 +17,44 @@ body
     left: 0;
     outline: none;
 }
+
+#description{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 0;
+    height: 0;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#desc-container{
+    position: relative;
+    width: 60%;
+    height: 60%;
+    background-color: white;
+}
+
+#desc-contents{
+    position: absolute;
+    width: 100%;
+    height: calc(60dvh - 30px);
+    top: 30px;
+}
+
+#desc-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

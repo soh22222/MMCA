@@ -311,5 +311,10 @@ const tick = () => {
 }
 
 const openPopup = (id) => {
-    console.log('clicked ' + id)
+    const description = document.getElementById('description')
+    const contents = document.getElementById('desc-contents')
+    contents.innerHTML = id + '의 설명입니다.'
+    description.style.display = 'flex'
+    description.style.width = '100%'
+    description.style.height = '100%'
 }
