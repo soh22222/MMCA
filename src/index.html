@@ -11,13 +11,15 @@
     <canvas class="webgl"></canvas>
     <script type="module" src="./script5.js"></script>
     <div id="description" onclick="closePopup()">
-        <div id="desc-container">
+        <div id="desc-container" onclick="return false;">
             <div id="desc-close" onclick="closePopup()"></div>
-            <div id="desc-contents"></div>
+            <div id="desc-contents">
+                <div id="desc-left"></div>
+                <div id="desc-right"></div>
+            </div>
             <!-- 
                 <iframe id="desc-contents" src="" frameborder="0" allowfullscreen></iframe>
             -->
-            <script>closePopup();</script>  
         </div>
     </div>
 </body>
