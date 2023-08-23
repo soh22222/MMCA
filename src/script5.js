@@ -23,6 +23,11 @@ window.addEventListener('mousemove', (event) => {
 
 const textureLoader = new THREE.TextureLoader()
 
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+
 
 /**
  * Base
@@ -182,6 +187,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
     images = gltf.scene;
 
     images.position.y = -8
+    images.position.z = sizes.height/2 
     images.rotation.y = 15
     //scene.add(images)
     images.children.forEach((child) => {clickables.add(child)})
@@ -191,20 +197,27 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
         //model2.color = new THREE.Color('red')
     
         model2.position.y = -4
+        model2.position.z = sizes.height/2
+
         //scene.add(model2)
+        model2.children.forEach((child) => {child.position.y = child.position.y-20})
         model2.children.forEach((child) => {clickables.add(child)})
 
         gltfLoader.load("/models/world_click/world_click_article.gltf", (gltf) => {
             model3 = gltf.scene;
         
             model3.position.y = -6
+            model3.position.z = sizes.height/2
+
             //scene.add(model3)
             model3.children.forEach((child) => {clickables.add(child)})
 
             gltfLoader.load("/models/world_click/world_click_adv.gltf", (gltf) => {
                 model4 = gltf.scene;
-            
                 model4.position.y = -7
+                model4.position.z = sizes.height/2
+
+
                 //scene.add(model4)
                 model4.children.forEach((child) => {clickables.add(child)})
                 scene.add(clickables)
@@ -251,10 +264,7 @@ scene.add(pointLight)
 /**
  * Sizes
  */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
+
 
 window.addEventListener('resize', () => {
     // Update sizes
@@ -280,7 +290,7 @@ camera.position.set(15, 1, 20)
 
 //이미지 사이즈 비슷하게 보이는 ver
 //const aspectRatio = sizes.width / sizes.height
-//const camera = new THREE.OrthographicCamera(- 5*aspectRatio, 5*aspectRatio, 5, - 5, 0.1, 1000)
+//const camera = new THREE.OrthographicCamera(-5*aspectRatio, 5*aspectRatio, 5, - 5, 0.1, 1000)
 
 
 scene.add(camera)
@@ -350,7 +360,7 @@ const tick = () => {
         gsap.to(currentIntersect.scale, { duration: .7, x: 10, y: 10, z: 10 });
         gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
 
-        window.onclick = () => {
+        window.onmousedown = () => {
             if(currentIntersect != null) {
                 openPopup(currentIntersect.name)
             }
@@ -375,20 +385,23 @@ const openPopup = (id) => {
     console.log(contentId)
     switch(contentCategory) {
         case 'im':
-            contents.innerHTML = `<img src="/clickables/image/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
             break
         case 'vi':
-            contents.innerHTML = `<img src="/clickables/video/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<img id="content-image" src="/clickables/video/${contentId}.jpg" alt="image" />`
             break
         case 'AD':
-            contents.innerHTML = `<img src="/clickables/adv/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<img id="content-image" src="/clickables/adv/${contentId}.jpg" alt="image" />`
             break
         case 'ar':
-            contents.innerHTML = `<img src="/clickables/article/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<img id="content-image" src="/clickables/article/${contentId}.jpg" alt="image" />`
             break
     }
-
     description.style.display = 'flex'
     description.style.width = '100%'
     description.style.height = '100%'
+
+    const contentImage = document.getElementById('content-image')
+    contents.scrollTop = Math.random() * contentImage.width
+    contents.scrollLeft = Math.random() * contentImage.height
 }
