@@ -41,7 +41,7 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 scene.background = new THREE.Color('black')
-scene.fog = new THREE.Fog( "rgb(10, 10, 10)", 3, 40 );
+scene.fog = new THREE.Fog("rgb(10, 10, 10)", 3, 40);
 
 //plane
 const geometry = new THREE.PlaneGeometry();
@@ -293,8 +293,8 @@ directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)
 
 const pointLight = new THREE.PointLight('white', 0.1)
-pointLight.position.y =2
-pointLight.position.z =10
+pointLight.position.y = 2
+pointLight.position.z = 10
 //scene.add(pointLight)
 
 
@@ -334,8 +334,8 @@ const controls = new OrbitControls(camera, canvas, plane)
 controls.target.set(0, 0, 0)
 controls.maxDistance = 20
 controls.minDistance = 1
-controls.maxPolarAngle = Math.PI/2
-controls.minPolarAngle = Math.PI/2
+controls.maxPolarAngle = Math.PI / 2
+controls.minPolarAngle = Math.PI / 2
 //controls.maxAzimuthAngle = Math.PI/1.8
 controls.enableDamping = true
 
@@ -385,7 +385,7 @@ const tick = () => {
     nontext.rotation.y = elapsedTime * -0.05
 
     clickables.rotation.y = elapsedTime * -0.05
-    
+
 
     if (mixer) {
         mixer.update(deltaTime)
@@ -406,15 +406,15 @@ const tick = () => {
         gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
 
         window.onclick = () => {
-            if(currentIntersect != null) {
+            if (currentIntersect != null) {
                 openPopup(currentIntersect.name)
             }
         }
     }
-    else{
+    else {
         currentIntersect = null
     }
-    
+
     // Render
     renderer.render(scene, camera);
     // Call tick again on the next frame
