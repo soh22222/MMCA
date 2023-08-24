@@ -40,8 +40,8 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-scene.background = new THREE.Color(0.1, 0.17, 0.22)
-scene.fog = new THREE.Fog( 'black', 20, 40 );
+scene.background = new THREE.Color('black')
+scene.fog = new THREE.Fog( "rgb(10, 10, 10)", 3, 40 );
 
 //plane
 const geometry = new THREE.PlaneGeometry();
@@ -73,7 +73,7 @@ scene.traverse((object) => {
 
 //particle
 const particlesGeometry = new THREE.BufferGeometry()
-const count = 500
+const count = 100
 const positions = new Float32Array(count * 3)
 //const textures = new Float32Array(count * 3)
 
@@ -88,9 +88,15 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 
 
 const particlesMaterial = new THREE.PointsMaterial()
 
-const particleTexture = textureLoader.load('texture/dustpng.png')
+const particleTexture = textureLoader.load('texture/12.png')
 
-particlesMaterial.size = 3
+for (let i = 0; i < 4; i++) {
+    const particlesMaterial = new THREE.PointsMaterial({
+        map: textureLoader.load(`/texture/${i}.png`)
+    })
+}
+
+particlesMaterial.size = 20
 particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
@@ -167,8 +173,6 @@ plane3.position.z = Math.random() * 5
 plane3.rotation.x = Math.random() * 5
 plane3.rotation.y = Math.random() * 5
 
-scene.add(plane2, plane3);
-
 
 //model 
 
@@ -179,6 +183,9 @@ let images = null
 let model2 = null
 let model3 = null
 let model4 = null
+let nonimages = null
+let nonarticles = null
+let nontext = null
 
 let clickables = new THREE.Group()
 
@@ -187,43 +194,51 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
     images = gltf.scene;
 
     images.position.y = -8
-    images.position.z = sizes.height/2 
     images.rotation.y = 15
-    //scene.add(images)
-    images.children.forEach((child) => {clickables.add(child)})
+    // scene.add(images)
+    images.children.forEach((child) => { clickables.add(child) })
 
     gltfLoader.load("/models/world_click/world_click_video.gltf", (gltf) => {
         model2 = gltf.scene;
         //model2.color = new THREE.Color('red')
-    
-        model2.position.y = -4
-        model2.position.z = sizes.height/2
 
+        model2.position.y = -20
+        model2.rotation.y = 120
         //scene.add(model2)
-        model2.children.forEach((child) => {child.position.y = child.position.y-20})
-        model2.children.forEach((child) => {clickables.add(child)})
+        const textureLoader = new THREE.TextureLoader()
+        const slate = textureLoader.load("/images/slate.png")
+        const material = new THREE.MeshStandardMaterial({
+            normalMap: slate
+        })
+        model2.children.forEach((child) => {
+            child.material = material
+            child.material.normalMap.center.x = 0.5
+            child.material.normalMap.center.y = 0.5
+            child.material.normalMap.repeat.x = -1
+            child.material.normalMap.repeat.y = 1
+        })
+
+        model2.children.forEach((child) => { child.position.z = child.position.z - 15 })
+        model2.children.forEach((child) => { child.rotation.y = Math.PI / 180 * 2 })
+        model2.children.forEach((child) => { clickables.add(child) })
+        console.log(model2)
 
         gltfLoader.load("/models/world_click/world_click_article.gltf", (gltf) => {
             model3 = gltf.scene;
-        
+
             model3.position.y = -6
-            model3.position.z = sizes.height/2
+            model3.children.forEach((child) => { clickables.add(child) })
 
-            //scene.add(model3)
-            model3.children.forEach((child) => {clickables.add(child)})
-
-            gltfLoader.load("/models/world_click/world_click_adv.gltf", (gltf) => {
+            gltfLoader.load("/models/world_click/world_click_text.gltf", (gltf) => {
                 model4 = gltf.scene;
+
                 model4.position.y = -7
-                model4.position.z = sizes.height/2
-
-
-                //scene.add(model4)
-                model4.children.forEach((child) => {clickables.add(child)})
+                model4.children.forEach((child) => { clickables.add(child) })
+                clickables.position.y = -3
                 scene.add(clickables)
                 tick()
             }
-            );            
+            );
         }
         );
     }
@@ -232,8 +247,30 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
 );
 
 
+//nonclick
+gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_images.gltf", (gltf) => {
+    nonimages = gltf.scene;
 
+    nonimages.position.y = -6
+    //nonimages.rotation.y = 15
+    scene.add(nonimages)
+});
 
+gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_text.gltf", (gltf) => {
+    nontext = gltf.scene;
+
+    nontext.position.y = -7
+    //nontext.rotation.y = 15
+    scene.add(nontext)
+});
+
+gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_articles.gltf", (gltf) => {
+    nonarticles = gltf.scene;
+
+    nonarticles.position.y = -7
+    //nonarticles.rotation.y = 15
+    scene.add(nonarticles)
+});
 
 
 
@@ -255,15 +292,10 @@ directionalLight.shadow.camera.bottom = - 7
 directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)
 
-const pointLight = new THREE.PointLight('red', 1)
+const pointLight = new THREE.PointLight('white', 0.1)
 pointLight.position.y =2
 pointLight.position.z =10
-scene.add(pointLight)
-
-
-/**
- * Sizes
- */
+//scene.add(pointLight)
 
 
 window.addEventListener('resize', () => {
@@ -285,12 +317,12 @@ window.addEventListener('resize', () => {
  * Camera
  */
 // 원근카메라
-const camera = new THREE.PerspectiveCamera(50, sizes.width / sizes.height, 0.1, 400)
+const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 0.1, 400)
 camera.position.set(15, 1, 20)
 
 //이미지 사이즈 비슷하게 보이는 ver
 //const aspectRatio = sizes.width / sizes.height
-//const camera = new THREE.OrthographicCamera(-5*aspectRatio, 5*aspectRatio, 5, - 5, 0.1, 1000)
+//const camera = new THREE.OrthographicCamera(- 5*aspectRatio, 5*aspectRatio, 5, - 5, 0.1, 1000)
 
 
 scene.add(camera)
@@ -299,8 +331,14 @@ gui.add(camera.position, 'x').min(0).max(25)
 
 // Controls
 const controls = new OrbitControls(camera, canvas, plane)
-controls.target.set(0, 0.75, 0)
+controls.target.set(0, 0, 0)
+controls.maxDistance = 20
+controls.minDistance = 1
+controls.maxPolarAngle = Math.PI/2
+controls.minPolarAngle = Math.PI/2
+//controls.maxAzimuthAngle = Math.PI/1.8
 controls.enableDamping = true
+
 
 
 
@@ -333,7 +371,7 @@ let currentIntersect = null
 
 
 const tick = () => {
-    const elapsedTime = clock.getElapsedTime(); 
+    const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
     //model.position.y = Math.sin(elapsedTime * 0.3) * 1.5
@@ -341,6 +379,13 @@ const tick = () => {
     model2.rotation.y = elapsedTime * 0.05
     model3.rotation.y = elapsedTime * -0.1
     model4.rotation.y = elapsedTime * -0.05
+
+    nonimages.rotation.y = elapsedTime * 0.07
+    nonarticles.rotation.y = elapsedTime * -0.05
+    nontext.rotation.y = elapsedTime * -0.05
+
+    clickables.rotation.y = elapsedTime * -0.05
+    
 
     if (mixer) {
         mixer.update(deltaTime)
@@ -351,16 +396,16 @@ const tick = () => {
     camera.lookAt(plane.position);
     dust.rotation.y = elapsedTime * 0.1
 
-    raycaster.setFromCamera(mouse, camera)   
+    raycaster.setFromCamera(mouse, camera)
     const modelIntersects = raycaster.intersectObject(clickables)
 
     if (modelIntersects.length > 0) {
         currentIntersect = modelIntersects[0].object
 
-        gsap.to(currentIntersect.scale, { duration: .7, x: 10, y: 10, z: 10 });
+        gsap.to(currentIntersect.scale, { duration: .5, x: 2, y: 2, z: 2 });
         gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
 
-        window.onmousedown = () => {
+        window.onclick = () => {
             if(currentIntersect != null) {
                 openPopup(currentIntersect.name)
             }
@@ -369,7 +414,7 @@ const tick = () => {
     else{
         currentIntersect = null
     }
-
+    
     // Render
     renderer.render(scene, camera);
     // Call tick again on the next frame
@@ -381,9 +426,9 @@ const openPopup = (id) => {
     const description = document.getElementById('description')
     const contents = document.getElementById('desc-contents')
     const contentCategory = id.slice(0, 2)
-    const contentId = id.split(-3,-1)
+    const contentId = id.split(-3, -1)
     console.log(contentId)
-    switch(contentCategory) {
+    switch (contentCategory) {
         case 'im':
             contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
             break
