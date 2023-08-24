@@ -436,7 +436,7 @@ const openPopup = (id) => {
             contents.innerHTML = `<img id="content-image" src="/clickables/video/${contentId}.jpg" alt="image" />`
             break
         case 'AD':
-            contents.innerHTML = `<img id="content-image" src="/clickables/adv/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<img id="content-image" src="/clickables/text/${contentId}.jpg" alt="image" />`
             break
         case 'ar':
             contents.innerHTML = `<img id="content-image" src="/clickables/article/${contentId}.jpg" alt="image" />`
