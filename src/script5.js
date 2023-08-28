@@ -237,14 +237,10 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
                 clickables.position.y = -3
                 scene.add(clickables)
                 tick()
-            }
-            );
-        }
-        );
-    }
-    );
-}
-);
+            });
+        });
+    });
+});
 
 
 //nonclick
