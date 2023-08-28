@@ -24,6 +24,8 @@ const playLeft = () => {
     videoContainer.style.display = 'flex'
     videoContainer.style.width = '80%'
     videoContainer.style.height = '80%'
+    const video = document.getElementById('start-video')
+    video.src = 'https://player.vimeo.com/video/836889962?h=86078262d3&autoplay=1'
 }
 
 const playRight = () => {
@@ -33,6 +35,8 @@ const playRight = () => {
     videoContainer.style.display = 'flex'
     videoContainer.style.width = '95%'
     videoContainer.style.height = '50%'
+    const video = document.getElementById('start-video')
+    video.src = 'https://player.vimeo.com/video/8283842?h=824686ffff&autoplay=1'
 }
 
 const backToStart = () => {

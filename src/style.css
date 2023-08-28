@@ -195,11 +195,11 @@ body
     position: fixed;
     width: 100%;
     height: 100%;
-    animation: bgfade 5s infinite;
+    animation: bgfade 6s infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 3;
 
 }
 
@@ -222,6 +222,7 @@ body
     justify-content: center;
     align-items: center;
     background-color: gray;
+    overflow: hidden;
 }
 
 #loading-layer > #loading-container{
