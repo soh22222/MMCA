@@ -423,13 +423,19 @@ const openPopup = (id) => {
     const contents = document.getElementById('desc-contents')
     const contentCategory = id.slice(0, 2)
     const contentId = id.split(-3, -1)
-    console.log(contentId)
+    const videolinks = {
+        'main_video001': 'https://player.vimeo.com/video/265143954?h=b2e05b73dd&autoplay=1',
+        'video003': 'https://player.vimeo.com/video/432220749?h=2831a3bfcd&autoplay=1',
+        'video005': 'https://player.vimeo.com/video/450850232?h=83c3b51bde&autoplay=1',
+    }
+    console.log(contentId[0])
     switch (contentCategory) {
         case 'im':
             contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
             break
+        case 'ma':
         case 'vi':
-            contents.innerHTML = `<img id="content-image" src="/clickables/video/${contentId}.jpg" alt="image" />`
+            contents.innerHTML = `<div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe src="${videolinks[contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
             break
         case 'AD':
             contents.innerHTML = `<img id="content-image" src="/clickables/text/${contentId}.jpg" alt="image" />`
@@ -442,7 +448,9 @@ const openPopup = (id) => {
     description.style.width = '100%'
     description.style.height = '100%'
 
-    const contentImage = document.getElementById('content-image')
-    contents.scrollTop = Math.random() * contentImage.width
-    contents.scrollLeft = Math.random() * contentImage.height
+    if(contentCategory !== 'vi'){
+        const contentImage = document.getElementById('content-image')
+        contents.scrollTop = Math.random() * contentImage.width
+        contents.scrollLeft = Math.random() * contentImage.height
+    }
 }
