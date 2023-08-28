@@ -20,13 +20,24 @@
         <div id="start-container" onclick="preventClick();">
             <div id="start-contents" onclick="preventClick();">
                 <div id="start-left">
+                    <div id="left-title" class="video-box">
+                        <div class="play-button" onclick="playLeft();"></div>
+                    </div>
                     <div class="close-button" onclick="closeStart();"></div>
-                    
                 </div>
                 <div id="start-right">
-                    <div class="close-button" onclick="closeStart();"></div>
-                    
+                    <div id="right-title" class="video-box">
+                        <div class="play-button" onclick="playRight();"></div>
+                    </div>
+                    <div class="close-button" onclick="closeStart();"></div>                   
                 </div>
+            </div>
+        </div>
+        <div id="selected-video">
+            <div id="video-container">
+                <div class="back-button" onclick="backToStart();"></div>
+                <div id="video-placeholder"></div>
+                <div class="close-button" onclick="closeStart();"></div>
             </div>
         </div>
     </div>
