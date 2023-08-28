@@ -8,6 +8,12 @@
     <script src="descriptioncontainer.js"></script>
 </head>
 <body>
+    <div id="loading-layer">
+        <div id="loading-container">
+            <div id="loading-circle"></div>
+            <div id="loading-text"></div>    
+        </div>
+    </div>
     <canvas class="webgl"></canvas>
     <script type="module" src="./script5.js"></script>
     <div id="start-layout" onclick="preventClick();">
@@ -33,3 +39,4 @@
     </div>
 </body>
 </html>
+<script>closeLoading();</script>
