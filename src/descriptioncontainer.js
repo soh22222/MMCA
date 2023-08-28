@@ -11,3 +11,8 @@ const closeLoading = () => {
         loading.style.display = 'none'
     }, 5000)
 }
+
+const closeStart = () => {
+    const start = document.getElementById('start-layout')
+    start.style.display = 'none'
+}
