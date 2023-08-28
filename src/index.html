@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,25 @@
 <body>
     <canvas class="webgl"></canvas>
     <script type="module" src="./script5.js"></script>
+    <div id="start-layout" onclick="preventClick();">
+        <div id="start-container" onclick="preventClick();">
+            <div id="start-contents" onclick="preventClick();">
+                <div id="start-left">
+                    <div class="close-button" onclick="closePopup();"></div>
+                    
+                </div>
+                <div id="start-right">
+                    <div class="close-button" onclick="closePopup();"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="description" onclick="preventClick(); closePopup();">
         <div id="desc-container" onclick="preventClick();">
             <div id="desc-contents" onclick="preventClick();">
-                <div id="desc-left"></div>
-                <div id="desc-right"></div>
+                <div id="desc-close" class="close-button" onclick="closePopup();"></div>
             </div>
-            <div id="desc-close" onclick="closePopup();"></div>
         </div>
     </div>
 </body>
