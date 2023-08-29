@@ -206,6 +206,7 @@ body
     width: 400%;
     height: 400%;
     object-position: scroll;
+    cursor: grabbing;
 }
 
 .close-button{

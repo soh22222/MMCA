@@ -463,4 +463,35 @@ const openPopup = (id) => {
         contents.scrollTop = Math.random() * contentImage.width
         contents.scrollLeft = Math.random() * contentImage.height
     }
+
+    let isDown = false;
+    let startX;
+    let startY;
+    let scrollLeft;
+    let scrollTop;
+
+    contents.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - contents.offsetLeft;
+        scrollLeft = contents.scrollLeft;
+        startY = e.pageY - contents.offsetTop;
+        scrollTop = contents.scrollTop;
+      })
+      contents.addEventListener('mouseleave', () => {
+        isDown = false;
+      })
+      contents.addEventListener('mouseup', () => {
+        isDown = false;
+      })
+      contents.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - contents.offsetLeft;
+        const walk = x - startX
+        contents.scrollLeft = scrollLeft - walk;
+        const y = e.pageY - contents.offsetTop;
+        const walkY = y - startY
+        contents.scrollTop = scrollTop - walkY;
+      })
+
 }
