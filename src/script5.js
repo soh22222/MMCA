@@ -16,9 +16,13 @@ THREE.ColorManagement.enabled = false
 const mouse = new THREE.Vector2()
 
 window.addEventListener('mousemove', (event) => {
-    mouse.x = event.clientX / sizes.width * 2 - 1
+    mouse.x = (event.clientX / sizes.width) * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
+})
 
+window.addEventListener('touchstart', (event) => {
+    mouse.x = (event.touches[0].clientX / sizes.width) * 2 - 1
+    mouse.y = - (event.touches[0].clientY / sizes.height) * 2 + 1
 })
 
 const textureLoader = new THREE.TextureLoader()
@@ -406,6 +410,11 @@ const tick = () => {
                 openPopup(currentIntersect.name)
             }
         }
+        window.ontouchend = () => {
+            if (currentIntersect != null) {
+                openPopup(currentIntersect.name)
+            }
+        }
     }
     else {
         currentIntersect = null
@@ -415,7 +424,6 @@ const tick = () => {
     renderer.render(scene, camera);
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
-
 }
 
 const openPopup = (id) => {
