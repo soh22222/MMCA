@@ -1,4 +1,8 @@
 const closePopup = () => {
+    const video = document.getElementById('video-frame')
+    if (video) {
+        video.src = '#'
+    }
     const description = document.getElementById('description')
     description.style.display = 'none'
 }
@@ -13,6 +17,10 @@ const closeLoading = () => {
 }
 
 const closeStart = () => {
+    const video = document.getElementById('start-video')
+    if (video) {
+        video.src = '#'
+    }
     const start = document.getElementById('start-layout')
     start.style.display = 'none'
 }
@@ -40,6 +48,10 @@ const playRight = () => {
 }
 
 const backToStart = () => {
+    const video = document.getElementById('start-video')
+    if (video) {
+        video.src = '#'
+    }
     const videoContainer = document.getElementById('selected-video')
     videoContainer.style.display = 'none'
     const startContainer = document.getElementById('start-container')

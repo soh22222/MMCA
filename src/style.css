@@ -27,6 +27,34 @@ body
     outline: none;
 }
 
+@media (orientation: portrait) {
+	#mobile-alert{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(3px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        color: white;
+    }
+    #mobile-alert > div{
+        width: 70%;
+        word-break: keep-all;
+        text-align: center;
+        font-weight: bold ;
+    }
+}
+
+@media (orientation: landscape) {
+	#mobile-alert{
+        display: none;
+    }
+}
+
+
 #start-layout
 {
     position: fixed;
