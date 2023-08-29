@@ -57,3 +57,11 @@ const backToStart = () => {
     const startContainer = document.getElementById('start-container')
     startContainer.style.display = 'flex'
 }
+
+const playVideo = () => {
+    const playBox = document.getElementById('video-description')
+    const videoBox = document.getElementById('video-player')
+    console.log(videoBox)
+    videoBox.style.display = 'flex'
+    playBox.style.display = 'none'
+}
