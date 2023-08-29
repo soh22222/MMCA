@@ -71,14 +71,12 @@ scene.traverse((object) => {
 
 //particle
 const particlesGeometry = new THREE.BufferGeometry()
-const count = 1000
+const count = 30
 const positions = new Float32Array(count * 3)
-//const textures = new Float32Array(count * 3)
 
 
 for (let i = 0; i < count * 3; i++) {
-    positions[i] = (Math.random() - 0.5) * 50
-    //textures[i] = Math.random()
+    positions[i] = (Math.random() - 0.5) * 30
 }
 
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
@@ -89,27 +87,35 @@ const particlesMaterial2 = new THREE.PointsMaterial()
 
 const particleTexture = textureLoader.load('texture/14.png')
 const particleTexture2 = textureLoader.load('texture/1.png')
+
+/** 
 for (let i = 0; i < 4; i++) {
     const particlesMaterial = new THREE.PointsMaterial({
         map: textureLoader.load(`/texture/${i}.png`)
     })
 }
+*/
 
 particlesMaterial.size = 100
 particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
-particlesMaterial2.map = particleTexture2
 particlesMaterial.transparent = true
 particlesMaterial.alphaMap = particleTexture
 //particlesMaterial.alphaTest = 0.001
 particlesMaterial.depthWrite = false
 
+particlesMaterial2.size = 50
+particlesMaterial2.map = particleTexture2
+particlesMaterial2.transparent = true
+particlesMaterial2.alphaMap = particleTexture
+particlesMaterial2.depthWrite = false
 
 const dust = new THREE.Points(particlesGeometry, particlesMaterial)
 const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
-//scene.add(dust)
-//scene.add(dust2)
+
+scene.add(dust)
+scene.add(dust2)
 
 
 
@@ -163,19 +169,6 @@ for (var i = 0; i < 50; i++) {
     plane2.rotation.x = Math.random() * 10
 }
 
-plane2.position.x = Math.random() * 5
-plane2.position.y = Math.random() * 5
-plane2.position.z = Math.random() * 5
-plane2.rotation.x = Math.random() * 5
-plane2.rotation.y = Math.random() * 5
-
-plane3.position.x = Math.random() * 5
-plane3.position.y = Math.random() * 5
-plane3.position.z = Math.random() * 5
-plane3.rotation.x = Math.random() * 5
-plane3.rotation.y = Math.random() * 5
-
-
 //model 
 
 const gltfLoader = new GLTFLoader()
@@ -189,6 +182,7 @@ let nonimages = null
 let nonarticles = null
 let nontext = null
 
+let gltfdust = null
 let clickables = new THREE.Group()
 
 
@@ -200,7 +194,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
     // scene.add(images)
     images.children.forEach((child) => { clickables.add(child) })
 
-    gltfLoader.load("/models/world_click/world_click_video.gltf", (gltf) => {
+    gltfLoader.load("/models/world_click/world_click_video3.gltf", (gltf) => {
         model2 = gltf.scene;
         //model2.color = new THREE.Color('red')
 
@@ -208,7 +202,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
         model2.rotation.y = 120
         //scene.add(model2)
         const textureLoader = new THREE.TextureLoader()
-        const slate = textureLoader.load("/images/slate.png")
+        const slate = textureLoader.load("/assets/slate.png")
         const material = new THREE.MeshStandardMaterial({
             map: slate
         })
@@ -235,7 +229,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
 
                 model4.position.y = -7
                 model4.children.forEach((child) => { clickables.add(child) })
-                clickables.position.y = -4
+                clickables.position.y = -1
 
                 scene.add(clickables)
                 tick()
@@ -270,7 +264,12 @@ gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_articles.gltf", (glt
     scene.add(nonarticles)
 });
 
+gltfLoader.load("/models/dust2.gltf", (gltf) => {
 
+    gltfdust = gltf.scene;
+    gltfdust.position.y = -3
+    //scene.add(gltfdust)
+});
 
 
 /**
@@ -382,6 +381,7 @@ const tick = () => {
     nonarticles.rotation.y = elapsedTime * -0.05
     nontext.rotation.y = elapsedTime * -0.05
 
+    gltfdust.rotation.y = elapsedTime * 0.07
     clickables.rotation.y = elapsedTime * -0.05
 
 
@@ -401,8 +401,8 @@ const tick = () => {
     if (modelIntersects.length > 0) {
         currentIntersect = modelIntersects[0].object
 
-        gsap.to(currentIntersect.scale, { duration: .5, x: 2, y: 2, z: 2 });
-        gsap.to(currentIntersect.scale, { duration: .7, x: 1, y: 1, z: 1 });
+        gsap.to(currentIntersect.scale, { duration: .5, x: 1.5, y: 1.5, z: 1.5 });
+        gsap.to(currentIntersect.scale, { duration: .5, x: .5, y:.5, z: .5 });
 
         window.onclick = () => {
             if (currentIntersect != null) {

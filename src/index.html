@@ -11,14 +11,17 @@
     <div id="mobile-alert">
         <div>이 웹페이지는 가로모드에 최적화되어있습니다.<br><br>가로모드로 사용해주세요.</div>
     </div>
+    
     <div id="loading-layer">
         <div id="loading-container">
             <div id="loading-circle"></div>
             <div id="loading-text"></div>    
         </div>
     </div>
+    
     <canvas class="webgl"></canvas>
     <script type="module" src="./script5.js"></script>
+    
     <div id="start-layout" onclick="preventClick();">
         <div id="start-container" onclick="preventClick();">
             <div id="start-contents" onclick="preventClick();">
@@ -46,6 +49,7 @@
             </div>
         </div>
     </div>
+    
     <div id="description" onclick="preventClick(); closePopup();">
         <div id="desc-container" onclick="preventClick();">
             <div id="desc-contents" onclick="preventClick();">
@@ -53,6 +57,7 @@
             <div id="desc-close" class="close-buttonInVideo" onclick="closePopup();"></div>
         </div>
     </div>
+
 </body>
 </html>
 <script>closeLoading();</script>
