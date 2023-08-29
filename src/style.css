@@ -92,8 +92,9 @@ body
 
 .back-button{
     position: absolute;
-    width: 30px;
-    height: 40px;
+    width: 50px;
+    height: 60px;
+    bottom :97%;
     background-image: url(./assets/back.svg);
     background-size: contain;
     background-repeat: no-repeat;
@@ -140,32 +141,32 @@ body
 #left-title{
     background-image: url(./assets/ltitle.png);
     background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: bottom left;
+    background-size: 45%;
+    background-position: 3% 96%;
 }
 
 #right-title{
     background-image: url(./assets/rtitle.png);
     background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: bottom left;
+    background-size: 47%;
+    background-position: 3% 96%;
 }
 
 .video-box{
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
+    width: 100%;
+    height: 90%;
     border: 2px solid;
-    border-color: lightgrey;
+    border-color: rgb(235, 235, 235);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .play-button{
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     background-image: url(./assets/play.svg);
-    background-size: contain;
+    background-size: 15%;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -189,7 +190,7 @@ body
 #desc-container{
     position: relative;
     width: 90%;
-    height: 80%;
+    height: 70%;
     cursor: default;
 }
 
@@ -204,19 +205,59 @@ body
 #content-image{
     width: 400%;
     height: 400%;
-    object-position: center;
+    object-position: scroll;
 }
 
 .close-button{
     position: absolute;
+   
+    right: 0vw;
+    width: 20%;
+    height: 20%;
+    top :102%;
+    background-image: url(./assets/gohome.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top right;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.close-buttonInImage{
+    position: absolute;
     bottom: -40px;
     right: 0vw;
-    width: 30px;
-    height: 40px;
-    background-image: url(./assets/home.svg);
-    background-size: contain;
+    width: 120px;
+    height: 100px;
+    top :101%;
+    background-image: url(./assets/gohome.svg);
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top right;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.close-buttonInVideo{
+    position: absolute;
+    bottom: -40px;
+    right: 0vw;
+    width: 120px;
+    height: 100px;
+    top :104%;
+    background-image: url(./assets/gohome.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top right;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,11 +296,11 @@ body
     width: 100%;
     height: calc(100% - 40px);
     position: absolute;
-    top: 40px;
+    top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    background-color: rgb(32, 32, 32);
     overflow: hidden;
 }
 
@@ -307,7 +348,7 @@ body
     width: 100%;
     height: 100%;
     background-image: url(./assets/loading-text.svg);
-    background-size: 50%;
+    background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;

@@ -1,7 +1,11 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
+//import * as dat from 'lil-gui'
 import gsap from 'gsap'
+import { seededRandom } from 'three/src/math/MathUtils'
+//import { BufferGeometry } from '../core/BufferGeometry.js';
 
 THREE.ColorManagement.enabled = false
 
@@ -12,13 +16,9 @@ THREE.ColorManagement.enabled = false
 const mouse = new THREE.Vector2()
 
 window.addEventListener('mousemove', (event) => {
-    mouse.x = (event.clientX / sizes.width) * 2 - 1
+    mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
-})
 
-window.addEventListener('touchstart', (event) => {
-    mouse.x = (event.touches[0].clientX / sizes.width) * 2 - 1
-    mouse.y = - (event.touches[0].clientY / sizes.height) * 2 + 1
 })
 
 const textureLoader = new THREE.TextureLoader()
@@ -32,6 +32,8 @@ const sizes = {
 /**
  * Base
  */
+// Debug
+//const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -110,7 +112,6 @@ const dust = new THREE.Points(particlesGeometry, particlesMaterial)
 const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
 //scene.add(dust)
 //scene.add(dust2)
-
 
 
 
@@ -223,6 +224,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
         model2.children.forEach((child) => { child.position.z = child.position.z - 15 })
         model2.children.forEach((child) => { child.rotation.y = Math.PI / 180 * 2 })
         model2.children.forEach((child) => { clickables.add(child) })
+        console.log(model2)
 
         gltfLoader.load("/models/world_click/world_click_article.gltf", (gltf) => {
             model3 = gltf.scene;
@@ -236,7 +238,7 @@ gltfLoader.load("/models/world_click/world_click_image.gltf", (gltf) => {
                 model4.position.y = -7
                 model4.children.forEach((child) => { clickables.add(child) })
                 clickables.position.y = -4
-
+                
                 scene.add(clickables)
                 tick()
             });
@@ -325,7 +327,7 @@ camera.position.set(15, 1, 20)
 
 scene.add(camera)
 
-// gui.add(camera.position, 'x').min(0).max(25)
+//gui.add(camera.position, 'x').min(0).max(25)
 
 // Controls
 const controls = new OrbitControls(camera, canvas, plane)
@@ -372,7 +374,7 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
-    // model.position.y = Math.sin(elapsedTime * 0.3) * 1.5
+    //model.position.y = Math.sin(elapsedTime * 0.3) * 1.5
     // images.rotation.y = elapsedTime * 0.05
     // model2.rotation.y = elapsedTime * 0.05
     // model3.rotation.y = elapsedTime * -0.1
@@ -394,7 +396,6 @@ const tick = () => {
     camera.lookAt(plane.position);
     dust.rotation.y = elapsedTime * 0.1
     dust2.rotation.y = elapsedTime * -0.1
-    
     raycaster.setFromCamera(mouse, camera)
     const modelIntersects = raycaster.intersectObject(clickables)
 
@@ -409,11 +410,6 @@ const tick = () => {
                 openPopup(currentIntersect.name)
             }
         }
-        window.ontouchend = () => {
-            if (currentIntersect != null) {
-                openPopup(currentIntersect.name)
-            }
-        }
     }
     else {
         currentIntersect = null
@@ -423,6 +419,7 @@ const tick = () => {
     renderer.render(scene, camera);
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+
 }
 
 const openPopup = (id) => {
@@ -435,17 +432,14 @@ const openPopup = (id) => {
         'video003': 'https://player.vimeo.com/video/432220749?h=2831a3bfcd&autoplay=1',
         'video005': 'https://player.vimeo.com/video/450850232?h=83c3b51bde&autoplay=1',
     }
+    console.log(contentId[0])
     switch (contentCategory) {
         case 'im':
             contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
             break
         case 'ma':
         case 'vi':
-            contents.innerHTML = `
-            <div id="video-description" class="video-box"><div class="play-button" onclick="playVideo();"></div></div>
-            <div id="video-player">
-            <div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe id="video-frame" src="${videolinks[contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            </div>`
+            contents.innerHTML = `<div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe src="${videolinks[contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
             break
         case 'AD':
             contents.innerHTML = `<img id="content-image" src="/clickables/text/${contentId}.jpg" alt="image" />`
@@ -458,7 +452,7 @@ const openPopup = (id) => {
     description.style.width = '100%'
     description.style.height = '100%'
 
-    if(contentCategory !== 'vi' && contentCategory !== 'ma'){
+    if(contentCategory !== 'vi'){
         const contentImage = document.getElementById('content-image')
         contents.scrollTop = Math.random() * contentImage.width
         contents.scrollLeft = Math.random() * contentImage.height

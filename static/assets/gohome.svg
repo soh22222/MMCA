@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_2" data-name="레이어 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184.02 65.37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #fbfbfb;
+        font-family: AppleSDGothicNeo-ExtraBold-KSCpc-EUC-H, 'Apple SD Gothic Neo';
+        font-size: 30.39px;
+      }
+    </style>
+  </defs>
+  <g id="_레이어_1-2" data-name="레이어 1">
+    <g>
+      <text class="cls-2" transform="translate(29.51 44.84)"><tspan x="0" y="0">Go Home</tspan></text>
+      <rect class="cls-1" x="1" y="1" width="182.02" height="63.37" rx="31.68" ry="31.68"/>
+    </g>
+  </g>
+</svg>
