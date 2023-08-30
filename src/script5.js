@@ -446,7 +446,7 @@ const openPopup = (id) => {
         case 'vi':
             contents.innerHTML = `
             <div id="video-player">
-            <div class="content-video"><iframe class="video-frame" src="${videolinks[lr][contentId[0]]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+            <div id="content-video"><iframe id="video-frame" src="${videolinks[lr][contentId[0]]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </div>`
             break
         case 'AD':
