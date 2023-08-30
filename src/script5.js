@@ -71,9 +71,8 @@ scene.traverse((object) => {
 
 //particle
 const particlesGeometry = new THREE.BufferGeometry()
-const count = 30
+const count = 1000
 const positions = new Float32Array(count * 3)
-
 
 for (let i = 0; i < count * 3; i++) {
     positions[i] = (Math.random() - 0.5) * 30
@@ -88,21 +87,12 @@ const particlesMaterial2 = new THREE.PointsMaterial()
 const particleTexture = textureLoader.load('texture/14.png')
 const particleTexture2 = textureLoader.load('texture/1.png')
 
-/** 
-for (let i = 0; i < 4; i++) {
-    const particlesMaterial = new THREE.PointsMaterial({
-        map: textureLoader.load(`/texture/${i}.png`)
-    })
-}
-*/
-
 particlesMaterial.size = 100
 particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
 particlesMaterial.transparent = true
 particlesMaterial.alphaMap = particleTexture
-//particlesMaterial.alphaTest = 0.001
 particlesMaterial.depthWrite = false
 
 particlesMaterial2.size = 50
@@ -114,11 +104,11 @@ particlesMaterial2.depthWrite = false
 const dust = new THREE.Points(particlesGeometry, particlesMaterial)
 const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
 
-scene.add(dust)
-scene.add(dust2)
+const particles = new THREE.Group()
+particles.add(dust)
+particles.add(dust2)
 
-
-
+scene.add(particles)
 
 //texture
 
@@ -265,10 +255,8 @@ gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_articles.gltf", (glt
 });
 
 gltfLoader.load("/models/dust2.gltf", (gltf) => {
-
     gltfdust = gltf.scene;
     gltfdust.position.y = -3
-    //scene.add(gltfdust)
 });
 
 
@@ -345,7 +333,7 @@ controls.enableDamping = true
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
 })
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace
 renderer.shadowMap.enabled = true
