@@ -88,7 +88,8 @@ scene.traverse((object) => {
 
 //particle
 const particlesGeometry = new THREE.BufferGeometry()
-const count = 1000
+const ratioFactor = Math.min(window.devicePixelRatio, 2)
+const count = 1000 * ratioFactor * ratioFactor
 const positions = new Float32Array(count * 3)
 
 for (let i = 0; i < count * 3; i++) {
@@ -104,7 +105,7 @@ const particlesMaterial = new THREE.PointsMaterial()
 const particleTexture = textureLoader.load('texture/14.png')
 // const particleTexture2 = textureLoader.load('texture/1.png')
 
-particlesMaterial.size = 100 * Math.min(window.devicePixelRatio, 2)
+particlesMaterial.size = 100 * ratioFactor * ratioFactor * ratioFactor
 particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
@@ -113,7 +114,7 @@ particlesMaterial.alphaMap = particleTexture
 particlesMaterial.depthWrite = false
 
 /**
-particlesMaterial2.size = 50 * Math.min(window.devicePixelRatio, 2)
+particlesMaterial2.size = 50
 particlesMaterial2.map = particleTexture2
 particlesMaterial2.transparent = true
 particlesMaterial2.alphaMap = particleTexture
@@ -358,7 +359,7 @@ renderer.outputColorSpace = THREE.LinearSRGBColorSpace
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1))
 
 
 
