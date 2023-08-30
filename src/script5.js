@@ -5,6 +5,15 @@ import gsap from 'gsap'
 
 THREE.ColorManagement.enabled = false
 
+const videolinks = [{
+    'main_video001': 'https://player.vimeo.com/video/859278565?h=b77063abec',
+    'video003': 'https://player.vimeo.com/video/859276972?h=ab3ee6f928',
+    'video001': 'https://player.vimeo.com/video/859278030?h=b1f4048c29',
+},{
+    'main_video001': 'https://player.vimeo.com/video/856998107?h=7901166727',
+    'video003': 'https://player.vimeo.com/video/856999134?h=9ad574fde9',
+    'video001': 'https://player.vimeo.com/video/856999618?h=f3c1be0ca2',
+}]
 
 /**
  * Mouse
@@ -425,11 +434,7 @@ const openPopup = (id) => {
     const contents = document.getElementById('desc-contents')
     const contentCategory = id.slice(0, 2)
     const contentId = id.split(-3, -1)
-    const videolinks = {
-        'main_video001': 'https://player.vimeo.com/video/265143954?h=b2e05b73dd&autoplay=1',
-        'video003': 'https://player.vimeo.com/video/432220749?h=2831a3bfcd&autoplay=1',
-        'video005': 'https://player.vimeo.com/video/450850232?h=83c3b51bde&autoplay=1',
-    }
+    const lr = document.body.dataset.lr
     switch (contentCategory) {
         case 'im':
             contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
@@ -439,7 +444,7 @@ const openPopup = (id) => {
             contents.innerHTML = `
             <div id="video-description" class="video-box"><div class="play-button" onclick="playVideo();"></div></div>
             <div id="video-player">
-            <div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe id="video-frame" src="${videolinks[contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+            <div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe id="video-frame" src="${videolinks[lr][contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </div>`
             break
         case 'AD':
