@@ -89,7 +89,7 @@ scene.traverse((object) => {
 //particle
 const particlesGeometry = new THREE.BufferGeometry()
 const ratioFactor = Math.min(window.devicePixelRatio, 2)
-const count = 1000 * ratioFactor * ratioFactor
+const count = 1000
 const positions = new Float32Array(count * 3)
 
 for (let i = 0; i < count * 3; i++) {
