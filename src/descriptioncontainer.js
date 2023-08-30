@@ -54,7 +54,7 @@ const playRight = () => {
     videoContainer.style.width = '95%'
     videoContainer.style.height = '50%'
     const video = document.getElementById('start-video')
-    video.src = 'https://player.vimeo.com/video/8283842?h=824686ffff&autoplay=1'
+    video.src = 'https://player.vimeo.com/video/856273126?h=bde41651c9&autoplay=1'
 }
 
 const backToStart = () => {
