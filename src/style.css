@@ -290,7 +290,7 @@ body
 }
 
 #video-player{
-    display: none;
+    display: flex;
     width: 100%;
 }
 

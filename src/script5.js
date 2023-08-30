@@ -442,7 +442,6 @@ const openPopup = (id) => {
         case 'ma':
         case 'vi':
             contents.innerHTML = `
-            <div id="video-description" class="video-box"><div class="play-button" onclick="playVideo();"></div></div>
             <div id="video-player">
             <div id="content-video" style="padding:56.25% 0 0 0;position:relative;"><iframe id="video-frame" src="${videolinks[lr][contentId[0]]}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </div>`
