@@ -19,6 +19,15 @@ window.addEventListener('mousemove', (event) => {
 window.addEventListener('touchstart', (event) => {
     mouse.x = (event.touches[0].clientX / sizes.width) * 2 - 1
     mouse.y = - (event.touches[0].clientY / sizes.height) * 2 + 1
+    const touchCursor = document.getElementById('touch-cursor')
+    touchCursor.style.left = event.touches[0].clientX + 'px'
+    touchCursor.style.top = event.touches[0].clientY + 'px'
+})
+
+window.addEventListener('touchmove', (event) => {
+    const touchCursor = document.getElementById('touch-cursor')
+    touchCursor.style.left = event.touches[0].clientX + 'px'
+    touchCursor.style.top = event.touches[0].clientY + 'px'
 })
 
 const textureLoader = new THREE.TextureLoader()
@@ -57,7 +66,6 @@ for (let i = 0; i < 6; i++) {
     img.position.z = Math.random() * 20
     img.rotation.y = Math.random() * 10
     img.rotation.x = Math.random() * 10
-    //scene.add(img)
 }
 
 
@@ -106,7 +114,7 @@ const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
 
 const particles = new THREE.Group()
 particles.add(dust)
-particles.add(dust2)
+//particles.add(dust2)
 
 scene.add(particles)
 
@@ -381,7 +389,6 @@ const tick = () => {
 
     camera.lookAt(plane.position);
     dust.rotation.y = elapsedTime * 0.1
-    dust2.rotation.y = elapsedTime * -0.1
     
     raycaster.setFromCamera(mouse, camera)
     const modelIntersects = raycaster.intersectObject(clickables)

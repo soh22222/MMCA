@@ -32,6 +32,15 @@ body
     height: 100%;
 }
 
+
+#touch-cursor{
+    display: flex;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: url(./assets/mobile_cursor.svg);
+}
+
 @media (orientation: portrait) {
 	#mobile-alert{
         position: fixed;
@@ -45,6 +54,7 @@ body
         z-index: 5;
         color: white;
     }
+
     #mobile-alert > div{
         width: 70%;
         word-break: keep-all;
@@ -58,6 +68,7 @@ body
         display: none;
     }
 }
+
 
 
 #start-layout
