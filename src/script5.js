@@ -106,7 +106,7 @@ const particleTexture = textureLoader.load('texture/14.png')
 // const particleTexture2 = textureLoader.load('texture/1.png')
 
 particlesMaterial.size = 100 * ratioFactor * ratioFactor * ratioFactor
-particlesMaterial.sizeAttenuation = false
+particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
 particlesMaterial.transparent = true
