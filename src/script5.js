@@ -99,12 +99,12 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 
 
 
 const particlesMaterial = new THREE.PointsMaterial()
-const particlesMaterial2 = new THREE.PointsMaterial()
+// const particlesMaterial2 = new THREE.PointsMaterial()
 
 const particleTexture = textureLoader.load('texture/14.png')
-const particleTexture2 = textureLoader.load('texture/1.png')
+// const particleTexture2 = textureLoader.load('texture/1.png')
 
-particlesMaterial.size = 100
+particlesMaterial.size = 100 * Math.min(window.devicePixelRatio, 2)
 particlesMaterial.sizeAttenuation = true
 particlesMaterial.color = new THREE.Color('white')
 particlesMaterial.map = particleTexture
@@ -112,18 +112,20 @@ particlesMaterial.transparent = true
 particlesMaterial.alphaMap = particleTexture
 particlesMaterial.depthWrite = false
 
-particlesMaterial2.size = 50
+/**
+particlesMaterial2.size = 50 * Math.min(window.devicePixelRatio, 2)
 particlesMaterial2.map = particleTexture2
 particlesMaterial2.transparent = true
 particlesMaterial2.alphaMap = particleTexture
 particlesMaterial2.depthWrite = false
+*/
 
 const dust = new THREE.Points(particlesGeometry, particlesMaterial)
-const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
+// const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
 
 const particles = new THREE.Group()
 particles.add(dust)
-//particles.add(dust2)
+// particles.add(dust2)
 
 scene.add(particles)
 
