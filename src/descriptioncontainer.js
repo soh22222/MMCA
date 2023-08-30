@@ -43,7 +43,7 @@ const playLeft = () => {
     videoContainer.style.width = '80%'
     videoContainer.style.height = '80%'
     const video = document.getElementById('start-video')
-    video.src = 'https://player.vimeo.com/video/836889962?h=86078262d3&autoplay=1'
+    video.src = 'https://player.vimeo.com/video/859272684?h=c02df0c148&autoplay=1'
 }
 
 const playRight = () => {
