@@ -4,11 +4,13 @@ export default {
     root: 'src/',
     publicDir: '../static/',
     base: './',
-    server:
-    {
-        host: true,
-        open: !isCodeSandbox // Open if it's not a CodeSandbox
-    },
+    server: {
+        port: 5173,
+        strictPort: true,
+        hmr: {
+          port: 5173,
+        },
+      },
     build:
     {
         outDir: '../dist',
