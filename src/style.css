@@ -5,6 +5,7 @@
     border: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    touch-action: manipulation;
 }
 
 ::-webkit-scrollbar {
