@@ -451,7 +451,7 @@ const openPopup = (id) => {
             const video = document.getElementById('video-frame')
             setTimeout(() => {
                 video.contentWindow.location.replace(videolinks[lr][contentId[0]])
-            }, 500)
+            }, 100)
             break
         case 'AD':
             contents.innerHTML = `<img id="content-image" src="/clickables/text/${contentId}.jpg" alt="image" />`
