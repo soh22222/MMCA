@@ -17,6 +17,14 @@ const closeLoading = () => {
     }, 5000)
 }
 
+const setLeft = () => {
+    document.body.dataset.lr = '0'
+}
+
+const setRight = () => {
+    document.body.dataset.lr = '1'
+}
+
 const closeStart = () => {
     const video = document.getElementById('start-video')
     if (video) {
