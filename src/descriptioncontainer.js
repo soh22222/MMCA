@@ -64,7 +64,9 @@ const playRight = () => {
     videoContainer.style.height = '50%'
     const video = document.getElementById('start-video')
     video.contentWindow.location.replace('https://player.vimeo.com/video/859272684?h=c02df0c148')
-    video.contentWindow.location.replace('https://player.vimeo.com/video/856273126?h=bde41651c9')
+    setTimeout(() => {
+        video.contentWindow.location.replace('https://player.vimeo.com/video/856273126?h=bde41651c9')
+    }, 500)
     document.body.dataset.lr = '1'
 }
 
