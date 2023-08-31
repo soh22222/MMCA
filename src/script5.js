@@ -449,7 +449,6 @@ const openPopup = (id) => {
             <div id="content-video"><iframe id="video-frame" src="#" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </div>`
             const video = document.getElementById('video-frame')
-            video.contentWindow.location.replace('https://player.vimeo.com/video/859272684?h=c02df0c148')
             setTimeout(() => {
                 video.contentWindow.location.replace(videolinks[lr][contentId[0]])
             }, 500)
