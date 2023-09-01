@@ -6,13 +6,15 @@ import gsap from 'gsap'
 THREE.ColorManagement.enabled = false
 
 const videolinks = [{
-    'main_video001': 'https://player.vimeo.com/video/859278565?h=b77063abec',
-    'video003': 'https://player.vimeo.com/video/859276972?h=ab3ee6f928',
+    'main_video001': 'https://player.vimeo.com/video/859272684?h=c02df0c148',
     'video001': 'https://player.vimeo.com/video/859278030?h=b1f4048c29',
+    'video003': 'https://player.vimeo.com/video/859276972?h=ab3ee6f928',
+    'video005' : 'https://player.vimeo.com/video/859278565?h=b77063abec',
 },{
-    'main_video001': 'https://player.vimeo.com/video/856998107?h=7901166727',
-    'video003': 'https://player.vimeo.com/video/856999134?h=9ad574fde9',
+    'main_video001': 'https://player.vimeo.com/video/856273126?h=bde41651c9',
     'video001': 'https://player.vimeo.com/video/856999618?h=f3c1be0ca2',
+    'video003': 'https://player.vimeo.com/video/856999134?h=9ad574fde9',
+    'video005' : 'https://player.vimeo.com/video/856998107?h=7901166727',
 }]
 
 /**
@@ -438,6 +440,7 @@ const openPopup = (id) => {
     const contentCategory = id.slice(0, 2)
     const contentId = id.split(-3, -1)
     const lr = document.body.dataset.lr
+    
     switch (contentCategory) {
         case 'im':
             contents.innerHTML = `<img id="content-image" src="/clickables/image/${contentId}.jpg" alt="image" />`
@@ -446,7 +449,7 @@ const openPopup = (id) => {
         case 'vi':
             contents.innerHTML = `
             <div id="video-player">
-            <div id="content-video"><iframe id="video-frame" src="#" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+            <div id="content-video"><iframe id="video-frame" src="/loading.html" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
             </div>`
             const video = document.getElementById('video-frame')
             setTimeout(() => {

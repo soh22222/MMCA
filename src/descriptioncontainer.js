@@ -1,7 +1,7 @@
 const closePopup = () => {
     const video = document.getElementById('video-frame')
     if (video) {
-        video.contentWindow.location.replace('#')
+        video.contentWindow.location.replace('/loading.html')
     }
     const description = document.getElementById('description')
     description.style.display = 'none'
