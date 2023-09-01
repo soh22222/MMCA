@@ -53,7 +53,7 @@ const playLeft = () => {
     const video = document.getElementById('start-video')
     setTimeout(() => {
         video.contentWindow.location.replace('https://player.vimeo.com/video/859272684?h=c02df0c148')
-    }, 100)
+    }, 300)
     document.body.dataset.lr = '0'
 }
 
@@ -67,7 +67,7 @@ const playRight = () => {
     const video = document.getElementById('start-video')
     setTimeout(() => {
         video.contentWindow.location.replace('https://player.vimeo.com/video/856273126?h=bde41651c9')
-    }, 100)
+    }, 300)
     document.body.dataset.lr = '1'
 }
 
