@@ -89,3 +89,18 @@ const playVideo = () => {
     videoBox.style.display = 'flex'
     playBox.style.display = 'none'
 }
+
+const detectIframe = () => {
+    const fullscreenButton = document.getElementById('fullscreen-toggle')
+    if (window.self !== window.top) {
+        fullscreenButton.style.display = 'flex'
+    }
+    else {
+        fullscreenButton.style.display = 'none'
+    }
+}
+
+const enterFullscreen = () => {
+    const siteurl = 'http://sireneunyoungjung.com/'
+    window.open(siteurl,'SirenEunYoungJung.com', 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes')
+}
