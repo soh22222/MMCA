@@ -37,8 +37,8 @@ body
 #touch-cursor{
     display: flex;
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 15px;
+    height: 15px;
     background: url(./assets/mobile_cursor.svg);
 }
 
@@ -101,8 +101,10 @@ body
 }
 
 .back-button{
+    position: absolute;
     width: 50px;
-    height: 5%;
+    height: 60px;
+    bottom :97%;
     background-image: url(./assets/back.svg);
     background-size: contain;
     background-repeat: no-repeat;
@@ -307,12 +309,14 @@ body
 
 #video-placeholder{
     width: 100%;
-    height: calc(90% - 40px);
-    margin-top: 10px;
+    height: calc(100% - 40px);
+    position: absolute;
+    top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    /*background-color: rgb(32, 32, 32);*/
 }
 
 #loading-layer > #loading-container{
