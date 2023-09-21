@@ -115,13 +115,7 @@ particlesMaterial.transparent = true
 particlesMaterial.alphaMap = particleTexture
 particlesMaterial.depthWrite = false
 
-/**
-particlesMaterial2.size = 50
-particlesMaterial2.map = particleTexture2
-particlesMaterial2.transparent = true
-particlesMaterial2.alphaMap = particleTexture
-particlesMaterial2.depthWrite = false
-*/
+
 
 const dust = new THREE.Points(particlesGeometry, particlesMaterial)
 // const dust2 = new THREE.Points(particlesGeometry, particlesMaterial2)
@@ -276,10 +270,7 @@ gltfLoader.load("/models/nonclickgltf/world_middle_nonclick_articles.gltf", (glt
     scene.add(nonarticles)
 });
 
-gltfLoader.load("/models/dust2.gltf", (gltf) => {
-    gltfdust = gltf.scene;
-    gltfdust.position.y = -3
-});
+
 
 
 /**
@@ -299,10 +290,7 @@ directionalLight.shadow.camera.bottom = - 7
 directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)
 
-const pointLight = new THREE.PointLight('white', 0.1)
-pointLight.position.y = 2
-pointLight.position.z = 10
-//scene.add(pointLight)
+
 
 
 window.addEventListener('resize', () => {
@@ -391,7 +379,7 @@ const tick = () => {
     nonarticles.rotation.y = elapsedTime * -0.05
     nontext.rotation.y = elapsedTime * -0.05
 
-    gltfdust.rotation.y = elapsedTime * 0.07
+  
     clickables.rotation.y = elapsedTime * -0.05
 
 
