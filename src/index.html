@@ -2,13 +2,13 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SirenEunYoungJung.com</title>
     <link rel="stylesheet" href="./style.css">
     <script src="descriptioncontainer.js"></script>
 </head>
 <body data-lr="0">
-    <div id="fullscreen-toggle" onclick="enterFullscreen()"></div>
+    <div id="fullscreen-toggle" onclick="enterFullscreen();"></div>
     <div id="mobile-alert">
         <div>
             <p>This webpage is optimized for landscape mode.<br><br>Please use it in landscape mode.<br><br></p>
@@ -31,25 +31,25 @@
             <div id="start-contents" onclick="preventClick();">
                 <div id="start-left">
                     <div id="left-title" class="video-box">
-                        <div class="play-button" onclick="playLeft();"></div>
+                        <div class="play-button" onclick="playLeft();" ontouchstart="playLeft();"></div>
                     </div>
-                    <div class="close-button" onclick="setLeft();closeStart();"></div>
+                    <div class="close-button" onclick="setLeft();closeStart();" ontouchstart="setLeft();closeStart();"></div>
                 </div>
                 <div id="start-right">
                     <div id="right-title" class="video-box">
-                        <div class="play-button" onclick="playRight();"></div>
+                        <div class="play-button" onclick="playRight();" ontouchstart="playRight();"></div>
                     </div>
-                    <div class="close-button" onclick="setRight();closeStart();"></div>                   
+                    <div class="close-button" onclick="setRight();closeStart();" ontouchstart="setRight();closeStart();"></div>                   
                 </div>
             </div>
         </div>
         <div id="selected-video">
             <div id="video-container">
-                <div class="back-button" onclick="backToStart();"></div>
+                <div class="back-button" onclick="backToStart();" ontouchstart="backToStart();"></div>
                 <div id="video-placeholder">
                     <div id="content-video"><iframe id="start-video" src="/loading.html" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
                 </div>
-                <div class="close-buttonInImage" onclick="closeStart();"></div>
+                <div class="close-buttonInImage" onclick="closeStart();" ontouchstart="closeStart();"></div>
             </div>
         </div>
     </div>
@@ -57,11 +57,11 @@
 
     <div id="touch-cursor"></div>
 
-    <div id="description" onclick="preventClick(); closePopup();">
+    <div id="description" onclick="preventClick(); closePopup();" ontouchstart="closePopup();">
         <div id="desc-container" onclick="preventClick();">
             <div id="desc-contents" onclick="preventClick();">
             </div>
-            <div id="desc-close" class="close-buttonInVideo" onclick="closePopup();"></div>
+            <div id="desc-close" class="close-buttonInVideo" onclick="closePopup();" ontouchstart="closePopup();"></div>
         </div>
     </div>
 
